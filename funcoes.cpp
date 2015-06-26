@@ -81,8 +81,22 @@ int ig(int x, int y) {
 	return m(_sg(sp(x,y)),_sg(sp(y,x)));
 }
 
+// max(x,y)
+int max(int x, int y) {
+	if (y == 0)
+		return x;
+	return f(sp(x,y),y);
+}
+
+// min(x,y)
+int min(int x, int y) {
+	if (y == 0)
+		return y;
+	return sp(f(x,y),max(x,y));
+}
+
 // x^y
-int pot(int x, int y){
+int pot(int x, int y) {
 	if (y == 0)
 		return s(y);
 	return m(x,pot(x,y-1));
@@ -98,10 +112,16 @@ cin >> x;
 cout << "y: ";
 cin >> y;
 
+if (ig(x,y) == 1)
+	cout << x << " = " << y << endl;
+else
+	cout << x << " != " <<y << endl;
+cout << "min(" << x << ", " << y << ") = " << min(x,y) << endl;
+cout << "max(" << x << ", " << y << ") = " << max(x,y) << endl; 
 cout << "x+y = " << f(x,y) << endl;
+cout << "x-y = " << sp(x,y) << endl;
 cout << "x*y = " << m(x,y) << endl;
 cout << "x! = " << fat(x) << endl;
-cout << "x-y = " << sp(x,y) << endl;
 cout << y << " mod "<< x << " = " << mod(x,y) << endl;
 cout << "x^y =" << pot(x,y) << endl;
 
