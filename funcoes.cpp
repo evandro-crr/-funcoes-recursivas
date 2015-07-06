@@ -59,7 +59,12 @@ int sp(int x, int y) {
 		return x;
 	return a(sp(x, y - 1));
 }
-
+// mod 4
+int mod4(int x) {
+	if (x == 0)
+		return 0;
+	return m(_sg(sp(mod4(x-1),6)),s(mod4(x-1)));
+}
 // y mod x
 int mod(int x, int y) {
 	if (y == 0)
@@ -72,6 +77,13 @@ int d2(int x) {
 	if (x == 0)
 		return z(x);
 	return a(sp(x,d2(x-1)));
+}
+
+// x/3
+int d3(int x) {
+	if (x == 0)
+		return z(x);
+	return d2(a(a(sp(x,a(d3(x-1))))));
 }
 
 // retorna 1 se x = y
@@ -102,28 +114,21 @@ int pot(int x, int y) {
 	return m(x,pot(x,y-1));
 }
 
+// mod 2
+int mod2(int x) {
+	if (x == 0)
+		return z(x);
+	return sp(x,m(2,d2(x)));
+}
+
+// mod 3
+int mod3(int x) {
+	if (x == 0)
+		return z(x);
+	return sp(x,m(3,d3(x)));
+}
+
 int main(){
 
-int x;
-int y;
-
-cout << "x: ";
-cin >> x;
-cout << "y: ";
-cin >> y;
-
-if (ig(x,y) == 1)
-	cout << x << " = " << y << endl;
-else
-	cout << x << " != " <<y << endl;
-cout << "min(" << x << ", " << y << ") = " << min(x,y) << endl;
-cout << "max(" << x << ", " << y << ") = " << max(x,y) << endl; 
-cout << "x+y = " << f(x,y) << endl;
-cout << "x-y = " << sp(x,y) << endl;
-cout << "x*y = " << m(x,y) << endl;
-cout << "x! = " << fat(x) << endl;
-cout << y << " mod "<< x << " = " << mod(x,y) << endl;
-cout << "x^y =" << pot(x,y) << endl;
-
-return 0;
+	return 0;
 }
